@@ -1,0 +1,327 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, Arial, sans-serif;
+}
+
+/* ===== COLORS ===== */
+:root {
+  --bg1: #FFF0F3;
+  --bg2: #FFD6E0;
+
+  --env-back: #C9184A;
+  --env-front: #FF4D6D;
+  --env-flap: #FF758F;
+
+  --letter-bg: #ffffff;
+  --text: #590D22;
+}
+
+/* ===== BODY ===== */
+body {
+  height: 100vh;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== SCENE ===== */
+.scene {
+  text-align: center;
+}
+
+/* ===== ENVELOPE ===== */
+.envelope {
+  
+  width: 420px;
+  height: 300px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1200px;
+  box-shadow: 0 25px 50px rgba(201, 24, 74, 0.35);
+  transition: transform 0.3s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.04);
+}
+
+/* ===== BACK ===== */
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: var(--env-back);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+/* ===== LETTER ===== */
+.letter {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 90%;
+  background: linear-gradient(180deg, #fff, #fff0f3);
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 16px;
+  color: var(--text);
+  z-index: 4;
+  transition: transform 0.9s ease;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* ===== FRONT ===== */
+/* ===== BOTTOM TRIANGLE FLAP ===== */
+.env-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 68%;
+  background: var(--env-front);
+  clip-path: polygon(0 100%, 50% 30%, 100% 100%);
+  z-index: 4;
+}
+
+/*.env-front {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background: var(--env-front);
+  border-radius: 0 0 12px 12px;
+  z-index: 6;
+}*/
+
+/* ===== LEFT FLAP ===== */
+.env-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--env-front);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  z-index: 6;
+}
+
+/* ===== RIGHT FLAP ===== */
+.env-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--env-front);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  z-index: 6;
+}
+
+/* ===== TOP SEAL FLAP (FIXED) ===== */
+.env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: var(--env-flap);
+  clip-path: polygon(0 0, 50% 70%, 100% 0);
+  transform-origin: top center;
+  transition: transform 0.9s ease;
+  z-index: 3;
+}
+
+/* ===== OPEN STATE ===== */
+.envelope.open .env-flap {
+  transform: rotateX(180deg);
+}
+
+/* ===== SCROLL BAR ===== */
+.letter::-webkit-scrollbar {
+  width: 6px;
+}
+
+.letter::-webkit-scrollbar-thumb {
+  background: var(--env-flap);
+  border-radius: 10px;
+}
+
+/* ===== HINT TEXT ===== */
+.hint {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 2px dashed rgba(255,255,255,0.6);
+  border-radius: 10px;
+  z-index: 2;
+}
+.envelope::after {
+  content: "♡  ♡  ♡";
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 18px;
+  z-index: 3;
+}
+body {
+  overflow: hidden;
+}
+
+body::before {
+  content: "✿  ❀  ✿";
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 40px;
+  opacity: 0.15;
+}
+
+body::after {
+  content: "✿  ❀  ✿";
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 40px;
+  opacity: 0.15;
+}
+.butterfly {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  z-index: 10;
+  animation: flap 1.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes flap {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15) rotate(5deg);
+  }
+}
+.env-flap::after {
+  content: "♡   ♡   ♡";
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: 8px;
+}
+.env-flap::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 2px dashed rgba(255,255,255,0.7);
+  border-radius: 8px;
+}
+.env-flap span {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  color: rgba(255,255,255,0.9);
+}
+.envelope {
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.envelope:hover {
+  box-shadow:
+    0 30px 60px rgba(255, 77, 109, 0.45),
+    0 0 20px rgba(255, 200, 220, 0.6);
+}
+/*----------*/
+.envelope {
+  position: relative;
+}
+
+.envelope::after {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.45),
+    transparent 70%
+  );
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.envelope:hover::after {
+  opacity: 1;
+  animation: shineMove 1.2s ease-in-out;
+}
+
+@keyframes shineMove {
+  from {
+    transform: translateX(-40%) rotate(25deg);
+  }
+  to {
+    transform: translateX(40%) rotate(25deg);
+  }
+}
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: 60px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #fff, #ff6b9d);
+  border-radius: 50% 50% 50% 50%;
+  animation: fly 14s linear infinite;
+  opacity: 0.35;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 50px;
+  background: rgba(0,0,0,0.15);
+}
+
+.balloon:nth-child(1){ left: 10%; animation-delay: 0s; }
+.balloon:nth-child(2){ left: 30%; animation-delay: -4s; }
+.balloon:nth-child(3){ left: 60%; animation-delay: -8s; }
+.balloon:nth-child(4){ left: 85%; animation-delay: -2s; }
+
+@keyframes fly {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+

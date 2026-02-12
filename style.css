@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background:
+    radial-gradient(circle at top, #ffe4e6, transparent 60%),
+    linear-gradient(135deg, #fff1f2, #ffe6eb);
+  color: #4a0e17;
+  overflow-x: hidden;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+
+/* Sections */
+
+.section, .hero {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px);
+  border-radius: 22px;
+  margin: 40px 0;
+  padding: 60px 30px;
+  box-shadow: 0 20px 40px rgba(214,51,132,0.15);
+  animation: fadeUp 1s ease forwards;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+h1, h2 {
+  font-family: 'Great Vibes', cursive;
+  color: #d63384;
+  text-shadow: 0 4px 12px rgba(214,51,132,0.35);
+}
+
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h1 {
+  font-family: 'Great Vibes', cursive;
+}
+h2 {
+  font-family: 'Great Vibes', cursive;
+}
+/* Typewriter */
+.typewriter {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+.typewriter::after {
+  content: "|";
+  animation: blink 1.2s infinite;
+  color: #ff6b9d;
+}
+
+
+/* Cursor */
+.typewriter::after {
+  content: "|";
+  margin-left: 5px;
+  animation: blink 1s infinite;
+  color: #d63384;
+}
+
+@keyframes blink {
+  0%,50% {opacity:1;}
+  51%,100% {opacity:0;}
+}
+
+/* Button */
+.cta-button {
+  margin-top: 40px;
+  background: linear-gradient(135deg,#ff6b9d,#d63384);
+  color: white;
+  border: none;
+  padding: 16px 42px;
+  font-size: 1.15rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(214,51,132,0.4);
+  
+}
+
+
+.cta-button:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 25px 45px rgba(214,51,132,0.55);
+}
+/* initially hidden */
+.cta-button {
+  display: none;   /* 👈 strongest hide method */
+  margin-top: 40px;
+  background: linear-gradient(135deg,#ff6b9d,#d63384);
+  color: white;
+  border: none;
+  padding: 16px 42px;
+  font-size: 1.15rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(214,51,132,0.4);
+  transition: all 0.35s ease;
+}
+
+.cta-button.show {
+  display: inline-block;
+  animation: flashBtn 1s infinite alternate;
+}
+
+@keyframes flashBtn {
+  from { box-shadow: 0 15px 35px rgba(214,51,132,0.4); }
+  to { box-shadow: 0 0 25px #ff6b9d; }
+}
+
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show { display: flex; }
+
+.envelope {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 400px;
+  animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Hearts */
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.heart {
+  font-size: 16px;
+  opacity: 0.3;
+  filter: blur(0.3px);
+}
+
+
+.heart:nth-child(1){ left:10%; }
+.heart:nth-child(2){ left:30%; animation-delay:-2s;}
+.heart:nth-child(3){ left:60%; animation-delay:-4s;}
+.heart:nth-child(4){ left:80%; animation-delay:-1s;}
+
+@keyframes float {
+  0%{transform:translateY(100vh); opacity:0;}
+  10%{opacity:1;}
+  100%{transform:translateY(-100vh); opacity:0;}
+}
+.balloons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -120px;
+  width: 60px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #fff, #ff6b9d);
+  border-radius: 50% 50% 50% 50%;
+  animation: fly 14s linear infinite;
+  opacity: 0.35;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 50px;
+  background: rgba(0,0,0,0.15);
+}
+
+.balloon:nth-child(1){ left: 10%; animation-delay: 0s; }
+.balloon:nth-child(2){ left: 30%; animation-delay: -4s; }
+.balloon:nth-child(3){ left: 60%; animation-delay: -8s; }
+.balloon:nth-child(4){ left: 85%; animation-delay: -2s; }
+
+@keyframes fly {
+  from { transform: translateY(0); }
+  to { transform: translateY(-120vh); }
+}
+.section::before,
+.hero::before {
+  content: "💗";
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 26px;
+  opacity: 0.25;
+}
+.sparkles {
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(#ff6b9d 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.05;
+  pointer-events: none;
+}
